@@ -15,6 +15,7 @@ struct ContentView: View {
     @State private var alertTitle = ""
     @State private var alertMessage = ""
     @State private var showingAlert = false
+    var strengths = ["1 Cup", "2 Cups", "3 Cups", "4 Cups", "5 Cups", "6 Cups", "7 Cups", "8 Cups"]
     
     var body: some View {
         NavigationView {
@@ -29,11 +30,10 @@ struct ContentView: View {
                     }
                 }
                 Section(header: Text("Daily coffee intake")){
-                    Stepper(value: $coffeeAmount, in: 1 ... 20) {
-                        if coffeeAmount == 1 {
-                            Text("1 cup")
-                        } else {
-                            Text("\(coffeeAmount) cups")
+                    Picker(selection: $coffeeAmount, label: Text("Strength")) {
+                        ForEach(0 ..< 8) {
+                            Text(self.strengths[$0])
+
                         }
                     }
                 }
