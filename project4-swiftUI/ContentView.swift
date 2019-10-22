@@ -18,21 +18,28 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
-            VStack {
-                Text("When do you want to wake up?")
-                    .font(.headline)
-                DatePicker("Please enter a time", selection: $wakeUp, displayedComponents: .hourAndMinute).labelsHidden()
-                Text("Desired amount to sleep")
-                    .font(.headline)
-                Stepper(value: $sleepAmount, in: 4 ... 12 , step: 0.25){
-                    Text("\(sleepAmount, specifier: "%g") hours")
+            Form {
+                VStack(alignment: .leading, spacing: 0){
+                    Text("When do you want to wake up?")
+                        .font(.headline)
+                    DatePicker("Please enter a time", selection: $wakeUp, displayedComponents: .hourAndMinute).labelsHidden()
+                        .datePickerStyle(WheelDatePickerStyle())
                 }
-                Text("Daily coffee intake").font(.headline)
-                Stepper(value: $coffeeAmount, in: 1 ... 20) {
-                    if coffeeAmount == 1 {
-                        Text("1 cup")
-                    } else {
-                        Text("\(coffeeAmount) cups")
+                VStack(alignment: .leading, spacing: 0){
+                    Text("Desired amount to sleep")
+                        .font(.headline)
+                    Stepper(value: $sleepAmount, in: 4 ... 12 , step: 0.25){
+                        Text("\(sleepAmount, specifier: "%g") hours")
+                    }
+                }
+                VStack(alignment: .leading, spacing: 0){
+                    Text("Daily coffee intake").font(.headline)
+                    Stepper(value: $coffeeAmount, in: 1 ... 20) {
+                        if coffeeAmount == 1 {
+                            Text("1 cup")
+                        } else {
+                            Text("\(coffeeAmount) cups")
+                        }
                     }
                 }
             } .navigationBarTitle("BetterRest")
