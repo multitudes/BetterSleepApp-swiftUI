@@ -14,6 +14,7 @@
 		45757AF9235B1DFA00D27743 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45757AF8235B1DFA00D27743 /* Assets.xcassets */; };
 		45757AFC235B1DFA00D27743 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45757AFB235B1DFA00D27743 /* Preview Assets.xcassets */; };
 		45757AFF235B1DFA00D27743 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45757AFD235B1DFA00D27743 /* LaunchScreen.storyboard */; };
+		45757B07235E269800D27743 /* SleepCalculator.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 45757B06235E269700D27743 /* SleepCalculator.mlmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		45757AFB235B1DFA00D27743 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		45757AFE235B1DFA00D27743 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		45757B00235B1DFA00D27743 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		45757B06235E269700D27743 /* SleepCalculator.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = SleepCalculator.mlmodel; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				45757AF6235B1DF800D27743 /* ContentView.swift */,
 				45757AF8235B1DFA00D27743 /* Assets.xcassets */,
 				45757AFD235B1DFA00D27743 /* LaunchScreen.storyboard */,
+				45757B06235E269700D27743 /* SleepCalculator.mlmodel */,
 				45757B00235B1DFA00D27743 /* Info.plist */,
 				45757AF3235B1DF800D27743 /* project4_swiftUI.xcdatamodeld */,
 				45757AFA235B1DFA00D27743 /* Preview Content */,
@@ -149,6 +152,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45757B07235E269800D27743 /* SleepCalculator.mlmodel in Sources */,
 				45757AF5235B1DF800D27743 /* project4_swiftUI.xcdatamodeld in Sources */,
 				45757AF0235B1DF800D27743 /* AppDelegate.swift in Sources */,
 				45757AF7235B1DF800D27743 /* ContentView.swift in Sources */,
