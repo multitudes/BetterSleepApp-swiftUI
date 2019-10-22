@@ -15,7 +15,10 @@ struct ContentView: View {
     @State private var alertTitle = ""
     @State private var alertMessage = ""
     @State private var showingAlert = false
-    var strengths = ["1 Cup", "2 Cups", "3 Cups", "4 Cups", "5 Cups", "6 Cups", "7 Cups", "8 Cups"]
+    
+    var cupCount:Double {
+      return Double(coffeeAmount + 1)
+    }
     
     var body: some View {
         NavigationView {
@@ -30,10 +33,13 @@ struct ContentView: View {
                     }
                 }
                 Section(header: Text("Daily coffee intake")){
-                    Picker(selection: $coffeeAmount, label: Text("Strength")) {
-                        ForEach(0 ..< 8) {
-                            Text(self.strengths[$0])
-
+                    Picker(selection: $coffeeAmount, label: Text("How many cups?")) {
+                        ForEach(1 ..< 21) {
+                            if $0 == 1 {
+                            Text("\($0) cup")
+                            } else {
+                               Text("\($0) cups")
+                            }
                         }
                     }
                 }
@@ -64,7 +70,8 @@ struct ContentView: View {
         let minute = (components.minute ?? 0) * 60
         
         do {
-            let prediction = try model.prediction(wake: Double(hour + minute), estimatedSleep: Double(sleepAmount), coffee: Double(coffeeAmount))
+            let prediction = try model.prediction(wake: Double(hour + minute), estimatedSleep: Double(sleepAmount), coffee: Double(cupCount))
+            print(cupCount)
             let sleepTime = wakeUp - prediction.actualSleep
             
             let  formatter = DateFormatter()
