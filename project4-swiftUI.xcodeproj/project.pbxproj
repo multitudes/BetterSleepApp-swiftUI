@@ -15,6 +15,8 @@
 		45757AFC235B1DFA00D27743 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45757AFB235B1DFA00D27743 /* Preview Assets.xcassets */; };
 		45757AFF235B1DFA00D27743 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45757AFD235B1DFA00D27743 /* LaunchScreen.storyboard */; };
 		45757B07235E269800D27743 /* SleepCalculator.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 45757B06235E269700D27743 /* SleepCalculator.mlmodel */; };
+		45757B0A235F568D00D27743 /* Simulator Screen Shot - iPhone 11 - 2019-10-22 at 17.20.11.png in Resources */ = {isa = PBXBuildFile; fileRef = 45757B08235F568D00D27743 /* Simulator Screen Shot - iPhone 11 - 2019-10-22 at 17.20.11.png */; };
+		45757B0B235F568D00D27743 /* BetterRest.csv in Resources */ = {isa = PBXBuildFile; fileRef = 45757B09235F568D00D27743 /* BetterRest.csv */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		45757AFE235B1DFA00D27743 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		45757B00235B1DFA00D27743 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		45757B06235E269700D27743 /* SleepCalculator.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = SleepCalculator.mlmodel; sourceTree = SOURCE_ROOT; };
+		45757B08235F568D00D27743 /* Simulator Screen Shot - iPhone 11 - 2019-10-22 at 17.20.11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Simulator Screen Shot - iPhone 11 - 2019-10-22 at 17.20.11.png"; sourceTree = "<group>"; };
+		45757B09235F568D00D27743 /* BetterRest.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BetterRest.csv; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +69,8 @@
 				45757AF6235B1DF800D27743 /* ContentView.swift */,
 				45757AF8235B1DFA00D27743 /* Assets.xcassets */,
 				45757AFD235B1DFA00D27743 /* LaunchScreen.storyboard */,
+				45757B09235F568D00D27743 /* BetterRest.csv */,
+				45757B08235F568D00D27743 /* Simulator Screen Shot - iPhone 11 - 2019-10-22 at 17.20.11.png */,
 				45757B06235E269700D27743 /* SleepCalculator.mlmodel */,
 				45757B00235B1DFA00D27743 /* Info.plist */,
 				45757AF3235B1DF800D27743 /* project4_swiftUI.xcdatamodeld */,
@@ -139,8 +145,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45757B0B235F568D00D27743 /* BetterRest.csv in Resources */,
 				45757AFF235B1DFA00D27743 /* LaunchScreen.storyboard in Resources */,
 				45757AFC235B1DFA00D27743 /* Preview Assets.xcassets in Resources */,
+				45757B0A235F568D00D27743 /* Simulator Screen Shot - iPhone 11 - 2019-10-22 at 17.20.11.png in Resources */,
 				45757AF9235B1DFA00D27743 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
