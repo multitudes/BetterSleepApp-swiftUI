@@ -10,8 +10,8 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var wakeUp = defaultWakeTime
-    @State private var sleepAmount = 9.0
-    @State private var coffeeAmount = 1
+    @State private var sleepAmount = 8.0
+    @State private var coffeeAmount = 0
     @State private var alertTitle = ""
     @State private var alertMessage = ""
     @State private var showingAlert = false
@@ -22,18 +22,41 @@ struct ContentView: View {
         return Calendar.current.date(from: components) ?? Date()
     }
     
-    
+    var yourBedTime: String {
+        let model = SleepCalculator()
+        
+        let components = Calendar.current.dateComponents([.hour, .minute], from: wakeUp)
+        let hour = (components.hour ?? 0) * 60 * 60
+        let minute = (components.minute ?? 0) * 60
+        
+        do {
+            let prediction = try
+            model.prediction(wake: Double(hour + minute), estimatedSleep: sleepAmount, coffee:  Double(coffeeAmount + 1))
+            print("for debug cups = \(coffeeAmount + 1)")
+            let sleepTime = wakeUp - prediction.actualSleep
+            
+            let formatter = DateFormatter()
+            formatter.timeStyle = .short
+            
+            return formatter.string(from: sleepTime)
+            
+        } catch {
+            return "Sorry there was a problem!"
+        }
+        
+    }
     
     var body: some View {
         NavigationView {
             VStack {
-                Text("hi")
+                Text("Your Bedtime: \(yourBedTime)")
                 .font(.system(size:25)).bold()
-                .padding()
+                .padding(20)
                 .foregroundColor(.white)
                 .background(Color.blue)
                 .clipShape(Capsule())
                 .statusBar(hidden: true)
+                    .padding(20)
 
                 Form {
                     Section(header: Text("When do you want to wake up?")) {
