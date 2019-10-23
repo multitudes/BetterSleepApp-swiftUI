@@ -15,7 +15,13 @@ struct ContentView: View {
     @State private var alertTitle = ""
     @State private var alertMessage = ""
     @State private var showingAlert = false
-    @State var calculatedBedTime: String = predictionOutput
+    static var defaultWakeTime: Date {
+        var components = DateComponents()
+        components.hour = 7
+        components.minute = 0
+        return Calendar.current.date(from: components) ?? Date()
+    }
+    
     var cupCount:Double {
       return Double(coffeeAmount + 1)
     }
@@ -23,7 +29,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             VStack {
-                Text(calculatedBedTime)
+                Text("hi")
                 .font(.system(size:25)).bold()
                 .padding()
                 .foregroundColor(.white)
@@ -42,62 +48,24 @@ struct ContentView: View {
                         }
                     }
                     Section(header: Text("Daily coffee intake")){
-                        Picker(selection: $coffeeAmount, label: Text("How many cups?")) {
-                            ForEach(1 ..< 21) {
-                                if $0 == 1 {
-                                Text("\($0) cup")
-                                } else {
-                                   Text("\($0) cups")
+                        Picker(selection: $coffeeAmount, label:Text("Cups")) {
+                                ForEach(1 ..< 21) {
+                                    if $0 == 1 {
+                                    Text("\($0) cup")
+                                    } else {
+                                       Text("\($0) cups")
+                                    }
                                 }
-                            }
-                        }
+                            }.pickerStyle(WheelPickerStyle())
+                            
                     }
-                } .navigationBarTitle("BetterRest")
+                    
+                }
             }
-                .alert(isPresented: $showingAlert) {
-                    Alert(title: Text(alertTitle), message: Text(alertMessage), dismissButton: .default(Text("ok")))
-            }
+                .navigationBarTitle("BetterRest")
         }
-}
-    
-    static var predictionOutput: String {
-        
-        return "hi"
+             .navigationViewStyle(StackNavigationViewStyle())
     }
-    
-    static var defaultWakeTime: Date {
-        var components = DateComponents()
-        components.hour = 7
-        components.minute = 0
-        return Calendar.current.date(from: components) ?? Date()
-    }
-
-    func calculateBedtime() -> String {
-        
-        let model = SleepCalculator()
-        let components = Calendar.current.dateComponents([.hour, .minute], from: wakeUp)
-        let hour = (components.hour ?? 0) * 60 * 60
-        let minute = (components.minute ?? 0) * 60
-        
-        do {
-            let prediction = try model.prediction(wake: Double(hour + minute), estimatedSleep: Double(sleepAmount), coffee: Double(cupCount))
-            print(cupCount)
-            let sleepTime = wakeUp - prediction.actualSleep
-            
-            let  formatter = DateFormatter()
-            formatter.timeStyle = .short
-            return  "Your ideal bedtime is \(formatter.string(from: sleepTime))"
-            
-            
-        } catch {
-            alertTitle = "Error"
-            alertMessage = "Sorry there was a problem"
-            showingAlert = true
-            return "error"
-        }
-        
-    }
-    
 }
 
 struct ContentView_Previews: PreviewProvider {
