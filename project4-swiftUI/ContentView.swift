@@ -32,7 +32,7 @@ struct ContentView: View {
         do {
             let prediction = try
             model.prediction(wake: Double(hour + minute), estimatedSleep: sleepAmount, coffee:  Double(coffeeAmount + 1))
-            print("for debug cups = \(coffeeAmount + 1)")
+            print("(for debug) cups = \(coffeeAmount + 1)")
             let sleepTime = wakeUp - prediction.actualSleep
             
             let formatter = DateFormatter()
