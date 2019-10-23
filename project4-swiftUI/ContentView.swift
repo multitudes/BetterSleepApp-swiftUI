@@ -22,9 +22,7 @@ struct ContentView: View {
         return Calendar.current.date(from: components) ?? Date()
     }
     
-    var cupCount:Double {
-      return Double(coffeeAmount + 1)
-    }
+    
     
     var body: some View {
         NavigationView {
