@@ -15,46 +15,55 @@ struct ContentView: View {
     @State private var alertTitle = ""
     @State private var alertMessage = ""
     @State private var showingAlert = false
-    
+    @State var calculatedBedTime: String = predictionOutput
     var cupCount:Double {
       return Double(coffeeAmount + 1)
     }
     
     var body: some View {
         NavigationView {
-            Form {
-                Section(header: Text("When do you want to wake up?")) {
-                    DatePicker("Please enter a time", selection: $wakeUp, displayedComponents: .hourAndMinute).labelsHidden()
-                        .datePickerStyle(WheelDatePickerStyle())
-                }
-                Section(header: Text("Desired amount to sleep")){
-                    Stepper(value: $sleepAmount, in: 4 ... 12 , step: 0.25){
-                        Text("\(sleepAmount, specifier: "%g") hours")
+            VStack {
+                Text(calculatedBedTime)
+                .font(.system(size:25)).bold()
+                .padding()
+                .foregroundColor(.white)
+                .background(Color.blue)
+                .clipShape(Capsule())
+                .statusBar(hidden: true)
+
+                Form {
+                    Section(header: Text("When do you want to wake up?")) {
+                        DatePicker("Please enter a time", selection: $wakeUp, displayedComponents: .hourAndMinute).labelsHidden()
+                            .datePickerStyle(WheelDatePickerStyle())
                     }
-                }
-                Section(header: Text("Daily coffee intake")){
-                    Picker(selection: $coffeeAmount, label: Text("How many cups?")) {
-                        ForEach(1 ..< 21) {
-                            if $0 == 1 {
-                            Text("\($0) cup")
-                            } else {
-                               Text("\($0) cups")
+                    Section(header: Text("Desired amount to sleep")){
+                        Stepper(value: $sleepAmount, in: 4 ... 12 , step: 0.25){
+                            Text("\(sleepAmount, specifier: "%g") hours")
+                        }
+                    }
+                    Section(header: Text("Daily coffee intake")){
+                        Picker(selection: $coffeeAmount, label: Text("How many cups?")) {
+                            ForEach(1 ..< 21) {
+                                if $0 == 1 {
+                                Text("\($0) cup")
+                                } else {
+                                   Text("\($0) cups")
+                                }
                             }
                         }
                     }
-                }
-            } .navigationBarTitle("BetterRest")
-            .navigationBarItems(trailing:
-                Button(action: calculateBedtime)
-                 {
-                    Text("Calculate ")
-                }
-            )
+                } .navigationBarTitle("BetterRest")
+            }
                 .alert(isPresented: $showingAlert) {
                     Alert(title: Text(alertTitle), message: Text(alertMessage), dismissButton: .default(Text("ok")))
             }
         }
 }
+    
+    static var predictionOutput: String {
+        
+        return "hi"
+    }
     
     static var defaultWakeTime: Date {
         var components = DateComponents()
@@ -62,8 +71,9 @@ struct ContentView: View {
         components.minute = 0
         return Calendar.current.date(from: components) ?? Date()
     }
-    func calculateBedtime(){
-        print("Button was tapped!")
+
+    func calculateBedtime() -> String {
+        
         let model = SleepCalculator()
         let components = Calendar.current.dateComponents([.hour, .minute], from: wakeUp)
         let hour = (components.hour ?? 0) * 60 * 60
@@ -76,13 +86,16 @@ struct ContentView: View {
             
             let  formatter = DateFormatter()
             formatter.timeStyle = .short
-            alertMessage = formatter.string(from: sleepTime)
-            alertTitle = "Your ideal bedtime is ..."
+            return  "Your ideal bedtime is \(formatter.string(from: sleepTime))"
+            
+            
         } catch {
             alertTitle = "Error"
             alertMessage = "Sorry there was a problem"
+            showingAlert = true
+            return "error"
         }
-        showingAlert = true
+        
     }
     
 }
